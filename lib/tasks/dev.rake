@@ -38,6 +38,7 @@ task sample_data: :environment do
       c_name = Faker::Name.unique.name
       u.contacts.create(
         name: c_name,
+        image: "https://robohash.org/#{rand(9999)}",
         email: "#{c_name}@example.com",
         personal_number: "1#{p_number}",
         work_number: "1#{w_number}",

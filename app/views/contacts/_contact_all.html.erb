@@ -1,0 +1,42 @@
+<div class="card mb-2">
+  <div class="card-header">
+    <h2 class="h5 m-0 p-0 d-flex align-items-center">
+    <%= image_tag contact.image, class: "rounded-circle mr-2", width: 48 %><%= link_to contact.name, contact_path(contact), class: "text-dark" %>
+    </h2>
+  </div>
+  <div class = "card-body">
+    <table class="table table-sm table-borderless">
+
+      <tr>
+        <th>Pref. Method</th>
+        <th>Organization</th>
+        <th>Created At</th>
+      </tr>
+
+      <tr>
+        <td class="card-text"><%= contact.preferred_method.capitalize %></td>
+        <td class="card-text"><%= contact.organization %></td>
+        <td class="card-text"><%= contact.created_at %></td>
+      </tr>
+
+      <tr>
+        <th>Personal #</th>
+        <th>Work #</th>
+        <th>Email</th>
+        <th>Facebook</th>
+        <th>Instagram</th>
+      </tr>
+      
+      <tr>
+        <td class="card-text"><%= Phonelib.parse(contact.personal_number).national %></td>
+        <td class="card-text"><%= Phonelib.parse(contact.work_number).national %></td>
+        <td class="card-text"><%= contact.email %></td>
+        <td class="card-text"><%= contact.facebook_url %></td>
+        <td class="card-text"><%= contact.instagram_url %></td>
+      </tr>
+   
+    </table>
+  </div>
+</div>
+
+
