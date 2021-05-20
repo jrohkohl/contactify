@@ -13,4 +13,8 @@
 #
 class Group < ApplicationRecord
   belongs_to :owner, class_name: "User", counter_cache: true
+
+  has_many :members
+
+  has_many :contacts, through: :members
 end
