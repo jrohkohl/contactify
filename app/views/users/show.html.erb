@@ -1,1 +1,55 @@
-hi
+<h1>Welcome</h1>
+    <p class="fs-5 col-md-8">Quickly and easily manage your contacts below.</p>
+
+    <div class="mb-5">
+      <a href="/docs/5.0/examples/" class="btn btn-primary btn-lg px-4">Add More Contacts</a>
+    </div>
+
+    <hr class="col-3 col-md-2 mb-5">
+
+    <div class="row g-5">
+      <div class="col-md-6">
+        <h2><i class="far fa-id-card"></i> Recently Added Contacts</h2>
+        <p>Ready to beyond the starter template? Check out these open source projects that you can quickly duplicate to a new GitHub repository.</p>
+        
+        <table class="table table-sm table-striped table-dark table-hover">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Pref. Method</th>
+              <th>Personal #</th>
+              <th>Work #</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @user.contacts.by_created_date.first(10).each do |contact| %>
+              <%= render "contacts/contact_show", contact: contact %>
+            <% end %>
+          </tbody>
+        </table>
+
+
+        
+
+      </div>
+
+      <div class="col-md-6">
+        <h2><i class="fas fa-user-friends"></i> Groups</h2>
+        <p>Read more detailed instructions and documentation on using or contributing to Bootstrap.</p>
+        <table class="table table-sm table-striped table-dark table-hover">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th># of Members</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @user.groups.by_created_date.first(10).each do |group| %>
+              <%= render "groups/group_show", group: group %>
+            <% end %>
+          </tbody>
+        </table>
+
+      </div>
+    </div>

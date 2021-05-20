@@ -58,7 +58,8 @@ task sample_data: :environment do
 
     groups = Group.all
     groups.each do |g|
-      2.times do
+      num_groups = [2,3,4].sample
+      num_groups.times do
         g.members.create(
           contact: g.owner.contacts.sample,
         )
