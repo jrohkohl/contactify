@@ -9,6 +9,6 @@
 #  updated_at :datetime         not null
 #
 class Member < ApplicationRecord
-  belongs_to :group
+  belongs_to :group, counter_cache: true
   belongs_to :contact
 end

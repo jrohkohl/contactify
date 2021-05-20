@@ -17,5 +17,5 @@
 #  updated_at       :datetime         not null
 #
 class Contact < ApplicationRecord
-  belongs_to :owner, class_name: "User"
+  belongs_to :owner, class_name: "User", counter_cache: true
 end
