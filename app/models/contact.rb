@@ -28,4 +28,12 @@ class Contact < ApplicationRecord
   validates :personal_number, phone: true
 
   validates :work_number, phone: true
+
+  scope :by_created_date, -> { order(created_at: :desc )}
+
+  scope :by_method, -> { order(preferred_method: :desc) }
+
+  #add enum here for preferred_method
+
+
 end

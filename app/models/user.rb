@@ -23,4 +23,6 @@ class User < ApplicationRecord
 
   has_many :groups, foreign_key: :owner_id
   has_many :contacts, foreign_key: :owner_id
+
+  validates :username, uniqueness: true     #add presence: true after fixing devise create forms
 end

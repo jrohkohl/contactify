@@ -17,4 +17,8 @@ class Group < ApplicationRecord
   has_many :members
 
   has_many :contacts, through: :members
+
+  scope :by_created_date, -> { order(created_at: :desc )}
+
+  scope :by_member_count, -> { order(members_count: :desc )}
 end
