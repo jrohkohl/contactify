@@ -22,4 +22,10 @@ class Contact < ApplicationRecord
   has_many :members
 
   has_many :groups, through: :members
+
+  validates :preferred_method, presence: true
+
+  validates :personal_number, phone: true
+
+  validates :work_number, phone: true
 end
