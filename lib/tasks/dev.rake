@@ -35,7 +35,7 @@ task sample_data: :environment do
       p_number = rand.to_s[2..11]
       w_number =  rand.to_s[2..11]
       o_number =  rand.to_s[2..11]
-      c_name = Faker::Name.unique.first_name
+      c_name = Faker::Name.unique.name
       u.contacts.create(
         name: c_name,
         email: "#{c_name}@example.com",
