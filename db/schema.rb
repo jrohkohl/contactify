@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_20_020554) do
+ActiveRecord::Schema.define(version: 2021_05_20_021528) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -43,6 +43,15 @@ ActiveRecord::Schema.define(version: 2021_05_20_020554) do
     t.index ["owner_id"], name: "index_groups_on_owner_id"
   end
 
+  create_table "members", force: :cascade do |t|
+    t.bigint "group_id", null: false
+    t.bigint "contact_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["contact_id"], name: "index_members_on_contact_id"
+    t.index ["group_id"], name: "index_members_on_group_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -62,4 +71,6 @@ ActiveRecord::Schema.define(version: 2021_05_20_020554) do
 
   add_foreign_key "contacts", "users", column: "owner_id"
   add_foreign_key "groups", "users", column: "owner_id"
+  add_foreign_key "members", "contacts"
+  add_foreign_key "members", "groups"
 end
