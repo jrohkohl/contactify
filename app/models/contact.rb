@@ -37,6 +37,8 @@ class Contact < ApplicationRecord
 
   validates :work_number, phone: true
 
+  validates :name, presence: true
+
   scope :by_created_date, -> { order(created_at: :desc )}
 
   scope :by_method, -> { order(preferred_method: :desc) }
