@@ -11,15 +11,17 @@
     </div>
   <% end %>
 
+
   <div class="field">
-    <%= form.label :group_id %>
-    <%= form.text_field :group_id %>
+    <%= form.select(:group_id, @group_options) %>
   </div>
 
   <div class="field">
-    <%= form.label :contact_id %>
-    <%= form.text_field :contact_id %>
+    <%= form.select(:contact_id, @contact_options) %>
   </div>
+
+
+
 
   <div class="actions">
     <%= form.submit %>

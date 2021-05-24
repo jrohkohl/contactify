@@ -47,11 +47,6 @@
     color: #fff;
 }
 
-.l-bg-purple {
-    background: #5a43c1 !important;
-    color: #fff;
-}
-
 .l-bg-orange {
     background: #f89e62 !important;
     color: #fff;
@@ -67,7 +62,42 @@
     color: #fff;
 }
 
-.l-bg-contact-all {
+
+
+.l-bg-purple {
     background: #5a43c1 !important;
     color: #fff;
+}
+
+
+
+
+
+
+.l-bg-contact-all {
+    background: #36374c !important;
+    color: #fff;
+    
+}
+
+.l-bg-contact-all-bottom {
+    background: #1F1A36 !important;
+    
+}
+
+.l-bg-blue-dark {
+    background: linear-gradient(to right, #373b44, #4286f4) !important;
+    color: #fff;
+}
+
+.btn-groups {
+    color: #f9ca75; 
+    border: 1px solid #f9ca75;
+	  border-radius: 2px;
+	  display: inline-block;
+	  font-size: 12px;
+	  margin: 0 7px 7px 0;
+	  padding: 7px;
+
+    
 }

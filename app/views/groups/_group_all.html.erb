@@ -20,7 +20,7 @@
   <div class = "card-body">
     <p class="card-text">Description:</p>
     <p class="card-text text-muted mt-0 pt-0"><%= group.description %></p>
-    <% group.contacts.each do |contact| %>
+    <% group.contacts.order(:preferred_method).each do |contact| %>
       <%= render "contacts/contact_groups", contact: contact %>
     <% end %>
   </div>

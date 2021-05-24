@@ -17,6 +17,10 @@ class ContactsController < ApplicationController
 
   # GET /contacts/1/edit
   def edit
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # POST /contacts or /contacts.json
@@ -38,8 +42,9 @@ class ContactsController < ApplicationController
   def update
     respond_to do |format|
       if @contact.update(contact_params)
-        format.html { redirect_to @contact, notice: "Contact was successfully updated." }
+        format.html { redirect_back fallback_location: root_path, notice: "Contact was successfully updated." }
         format.json { render :show, status: :ok, location: @contact }
+        format.js
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @contact.errors, status: :unprocessable_entity }

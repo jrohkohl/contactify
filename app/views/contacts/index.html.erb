@@ -2,23 +2,28 @@
   <link rel="stylesheet" href="flashy_cards.css">
 </head>
 <body>
-  <h1 class="display-4"><i class="far fa-id-card"></i> My Contacts</h1>
+  <div>
+    <h4 class="display-4"><i class="far fa-id-card"></i> My Contacts</h4>
+  </div>
+  
+  <hr>
 
-  <hr class="mb-5">
 
-  <div class="row">
+
+
+  <div class = "row">
     <% current_user.contacts.by_created_date.each do |contact| %>
-      <div class= "col-3">
+      <div class = "col-4">
         <%= render "contacts/contact_all", contact: contact %>
       </div>
     <% end %>
   </div>
-
-
   <button type="button" class="btn btn-outline-primary btn-sm">
     <%= link_to 'Add Contact', new_contact_path %>
   </button>
 
-  </body>
+</body>
+
+
 
 

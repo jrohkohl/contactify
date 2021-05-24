@@ -1,63 +1,113 @@
-<%= form_with(model: contact) do |form| %>
-  <% if contact.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
+<div id = "<%= dom_id(contact) %>_form">
+  <%= form_with(model: contact, local: false) do |form| %>
+    <% if contact.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
 
-      <ul>
-        <% contact.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+        <ul>
+          <% contact.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="text-center">
+      <div class="card card-block d-flex l-bg-contact-all p-1">
+
+        <div class = "m-2">
+          <div class = "card-body align-items-center d-flex justify-content-center">
+            <%= form.label :image %>
+            <div class="field">
+              <%= form.text_field :image %>
+            </div>
+            
+          </div>
+          <div class= "d-flex justify-content-center">
+
+            <div>
+              <i class="fab fa-facebook fa-lg" style="color:white"></i> <%= form.label :facebook_url %>
+              <div class="field">
+                <%= form.text_field :facebook_url %>
+              </div>
+            </div>
+            <div>
+            <i class="fab fa-instagram fa-lg" style="color:white"></i> <%= form.label :instagram_url %>
+              <div class="field">
+                <%= form.text_field :instagram_url %>
+              </div>
+            </div>
+          </div>
+
+          <div class="field">
+            <%= form.label :name %>
+            <%= form.text_field :name %>
+          </div>
+          <div class="field">
+            <%= form.label :organization %>
+            <%= form.text_field :organization %>
+          </div>
+          
+          <hr class="col-md-2">   
+
+
+
+          <div class="field">
+            <%= form.label :preferred_method %>
+            <%= form.text_field :preferred_method %>
+          </div>
+
+          
+          <div class="field">
+            <%= form.label :personal_number %>
+            <%= form.text_field :personal_number %>
+          </div>
+          
+          
+          <div class="field">
+            <%= form.label :work_number %>
+            <%= form.text_field :work_number %>
+          </div>
+          
+          <div class="field">
+          
+            <%= form.label :email %>
+            <%= form.text_field :email %>
+          </div>
+          
+          <div class="actions">
+            <%= form.submit %>
+          </div>
+        
+
+
+
+        </div>
+        <div class="card-footer mt-0 pt-1">
+          <div class = "d-flex justify-content-between">
+
+                
+            <div class = "mt-1">
+              <% contact.groups.each do |group|%>
+                <%= link_to group_path(group) do %>
+                  <button type="button" class="btn btn-groups btn-sm m-1"><%= group.name %></small></button>
+                <% end %>
+              <% end %>
+            </div>
+            
+          </div>
+        </div>
+        <div class = "card-footer">
+          <div class = "justify-content-between">
+            <p class="card-text text-left text-light">
+              <%= link_to edit_contact_path(contact), class: "text-light" do %>
+                <i class="fas fa-user-edit fa-xs" style="color:white"></i>
+              <% end %> 
+              <small>  Last updated: <%= contact.updated_at.to_date %></small>
+            </p>
+          </div>
+        </div>
+      </div> 
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :image %>
-    <%= form.text_field :image %>
-  </div>
-
-  <div class="field">
-    <%= form.label :organization %>
-    <%= form.text_field :organization %>
-  </div>
-
-  <div class="field">
-    <%= form.label :preferred_method %>
-    <%= form.text_field :preferred_method %>
-  </div>
-
-  <div class="field">
-    <%= form.label :personal_number %>
-    <%= form.text_field :personal_number %>
-  </div>
-
-  <div class="field">
-    <%= form.label :work_number %>
-    <%= form.text_field :work_number %>
-  </div>
-
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email %>
-  </div>
-
-  <div class="field">
-    <%= form.label :instagram_url %>
-    <%= form.text_field :instagram_url %>
-  </div>
-
-  <div class="field">
-    <%= form.label :facebook_url %>
-    <%= form.text_field :facebook_url %>
-  </div>
-
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

@@ -31,4 +31,6 @@ class Group < ApplicationRecord
   scope :by_created_date, -> { order(created_at: :desc )}
 
   scope :by_member_count, -> { order(members_count: :desc )}
+  
+  
 end
