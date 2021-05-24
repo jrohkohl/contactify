@@ -1,50 +1,41 @@
-<div class="card mb-2">
-  <div class="card-header d-flex justify-content-between align-items-center">
-    <h1 class="h4 d-flex align-items-center">
-      <%= image_tag contact.image, class: "rounded-circle mr-2", width: 48 %><%= link_to contact.name, contact_path(contact), class: "text-dark" %>
-    </h1>
-    <div>
-      <button type="button" class="btn btn-outline-dark btn-sm">
-        <%= link_to 'Edit Contact', edit_contact_path(contact), class: "text-dark" %>
-      </button>
-      <button type="button" class="btn btn-outline-dark btn-sm">
-        <%= link_to 'Add to Group', edit_contact_path(contact), class: "text-dark" %>
-      </button>
+<div class="text-center">
+  <div class="card card-block d-flex l-bg-contact-all p-1", style = "height: 470px;">
+
+    <div class = "m-2">
+      <div class = "card-body align-items-center d-flex justify-content-center">
+        <%= image_tag contact.image, class: "rounded-circle", width: 155, :style => "border: 1px solid white; padding: 7px;" %>
+        
+      </div>
+      <div>
+          <% if contact.facebook_url.present? %>
+            <a href="<%= contact.facebook_url %>"><i class="fab fa-facebook fa-2x" style="color:white"></i></a> 
+          <% end %>
+          <% if contact.instagram_url.present? %>          
+            <a href="#"><i class="fab fa-instagram fa-2x" style="color:white"></i></a>
+          <% else %>
+
+          <% end %>
+      </div>
+
+      <h5 class="mb-0"><%= link_to contact.name, contact_path(contact), class: "text-center text-light" %></h5>
+      <p><small><%= contact.organization %></small></p>
+      <hr class="col-md-2">   
+      <div><p>Prefers <%= contact.preferred_method%></p></div>
+      <div><i class="fas fa-home"></i> : <%= Phonelib.parse(contact.personal_number).national %></div>
+      <div><i class="fas fa-briefcase"></i> : <%= Phonelib.parse(contact.work_number).national %></div>
+      <div><i class="fas fa-envelope"></i> : <%= contact.email %></div>
     </div>
-  </div>
-  <div class = "card-body">
-    <table class="table table-sm table-borderless">
-
-      <tr>
-        <th>Preferred Method</th>
-        <th>Organization</th>
-        <th>Created</th>
-        <th>Email</th>
-      </tr>
-
-      <tr>
-        <td class="card-text"><%= contact.preferred_method.capitalize %></td>
-        <td class="card-text"><%= contact.organization %></td>
-        <td class="card-text"><%= contact.created_at.to_date %></td>
-        <td class="card-text"><%= contact.email %></td>
-      </tr>
-
-      <tr>
-        <th>Personal #</th>
-        <th>Work #</th>
-        <th>Facebook</th>
-        <th>Instagram</th>
-      </tr>
-      
-      <tr>
-        <td class="card-text"><%= Phonelib.parse(contact.personal_number).national %></td>
-        <td class="card-text"><%= Phonelib.parse(contact.work_number).national %></td>
-        <td class="card-text"><%= contact.facebook_url %></td>
-        <td class="card-text"><%= contact.instagram_url %></td>
-      </tr>
-   
-    </table>
-  </div>
+    <div class="card-footer mt-0 pt-1">
+      <div class = "d-flex justify-content-between">
+        <p class="card-text text-left text-light">
+          <%= link_to edit_contact_path(contact), class: "text-light" do %>
+            <i class="fas fa-user-edit fa-xs" style="color:white"></i>
+          <% end %> 
+          <small>  Last updated: <%= contact.updated_at.to_date %></small>
+          
+        </p>
+        
+      </div>
+    </div>
+  </div> 
 </div>
-
-
