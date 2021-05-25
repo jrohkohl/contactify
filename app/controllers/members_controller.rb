@@ -13,8 +13,13 @@ class MembersController < ApplicationController
   # GET /members/new
   def new
     @member = Member.new
+    @member.group_id =  params[:group_id]
     @contact_options = current_user.contacts.map{ |c| [ c.name, c.id ] }
     @group_options = current_user.groups.map{ |g| [ g.name, g.id ] }
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /members/1/edit
@@ -24,6 +29,7 @@ class MembersController < ApplicationController
   # POST /members or /members.json
   def create
     @member = Member.new(member_params)
+   
 
     respond_to do |format|
       if @member.save

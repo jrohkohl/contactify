@@ -10,20 +10,16 @@
       </ul>
     </div>
   <% end %>
-
   
   <div class="field">
-    <%= form.select(:group_id, @group_options) %>
+    <%= form.hidden_field :group_id %>
   </div>
-
-  <div class="field">
+  
+  <div class = "field mt-3">
     <%= form.select(:contact_id, @contact_options) %>
   </div>
 
-
-
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="actions mt-2">
+    <%= form.submit "Add to Group" %>
   </div>
 <% end %>

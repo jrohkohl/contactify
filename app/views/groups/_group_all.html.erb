@@ -10,7 +10,7 @@
       </a>
 
       <div class="dropdown-menu dropdown-menu-right">
-        <%= link_to "Add User to Group", edit_group_path(group), class: "dropdown-item text-dark" %>
+        <%= link_to "Add User to Group", new_member_path(:group_id => group.id), class: "dropdown-item text-dark", remote: true %>
         <%= link_to "Edit Group", edit_group_path(group), class: "dropdown-item text-dark" %>
       </div>
     </div>
@@ -19,7 +19,7 @@
   <div class="card-body px-4 pt-2">
     <p><strong>About:</strong> <%= group.description %></p>
     
-    <div class="d-flex">
+    <div id = "<%= dom_id(group) %>_user_bubbles" class="d-flex">
       <% group.contacts.by_created_date.each do |contact| %>
         <div title ="<%=contact.name%>"><%= image_tag contact.image, class: "rounded-circle mr-1", width: 28 %></div>
       <% end %>
