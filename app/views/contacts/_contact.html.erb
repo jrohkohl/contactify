@@ -4,7 +4,9 @@
       <div class = "card-header">
         <div class="d-flex justify-content-between align-items-center">
           <div class= "d-flex">
-            <%= image_tag contact.image, class: "rounded-circle", width: 45, :style => "border: 1px solid white; padding: 3px;" %>
+            <% if contact.image.present? %>
+              <%= image_tag contact.image, class: "rounded-circle", width: 45, :style => "border: 1px solid white; padding: 3px;" %>
+            <% end %>
             <div class="d-flex flex-column ml-2">
               <strong><%= link_to contact.name, contact_path(contact), class: "text-light" %></strong>
               <small><%= contact.organization %></small>
@@ -28,13 +30,18 @@
           <div><i class="fas fa-envelope"></i> : <%= contact.email %></div>
       </div>
       <div class="card-footer mt-0 pt-0">
-        <div class = "justify-content-between">
-          <p class="card-text text-left text-light">
+        <div class = "d-flex justify-content-between align-items-center">
+          <div class="card-text text-light">
             <%= link_to edit_contact_path(contact), class: "text-light", remote: true do %>
               <i class="fas fa-user-edit fa-xs" style="color:white"></i>
             <% end %> 
             <small>  Last updated: <%= contact.updated_at.to_date %></small>
-          </p>
+          </div>
+          <div>
+            <%= link_to contact, method: :delete, class: "text-light", remote: true do %>
+              <i class="fas fa-user-minus fa-xs" style="color:white"></i>
+            <% end %>
+          </div>
         </div>
       </div>
     </div> 

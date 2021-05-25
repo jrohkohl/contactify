@@ -14,6 +14,10 @@ class ContactsController < ApplicationController
   # GET /contacts/new
   def new
     @contact = Contact.new
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /contacts/1/edit
@@ -58,8 +62,9 @@ class ContactsController < ApplicationController
   def destroy
     @contact.destroy
     respond_to do |format|
-      format.html { redirect_to contacts_url, notice: "Contact was successfully destroyed." }
+      format.html { redirect_back fallback_location: root_url, notice: "Contact was successfully destroyed." }
       format.json { head :no_content }
+      format.js
     end
   end
 
