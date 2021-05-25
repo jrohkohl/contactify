@@ -1,0 +1,9 @@
+var added_contact = $("<%= j(render "contacts/contact_all", contact: @contact) %>");
+
+added_contact.hide();
+
+$("#<%= dom_id(@contact) %>_form").after(added_contact);
+
+added_contact.slideDown();
+
+

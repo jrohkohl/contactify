@@ -4,6 +4,7 @@ class ContactsController < ApplicationController
   # GET /contacts or /contacts.json
   def index
     @contacts = Contact.all
+
   end
 
   # GET /contacts/1 or /contacts/1.json
@@ -29,8 +30,9 @@ class ContactsController < ApplicationController
     @contact.owner_id = current_user.id
     respond_to do |format|
       if @contact.save
-        format.html { redirect_to @contact, notice: "Contact was successfully created." }
+        format.html { redirect_back fallback_location: root_path, notice: "Contact was successfully created." }
         format.json { render :show, status: :created, location: @contact }
+        format.js
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @contact.errors, status: :unprocessable_entity }
