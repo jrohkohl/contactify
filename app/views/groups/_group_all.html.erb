@@ -1,27 +1,30 @@
-<div class="card mb-2">
-  <div class="card-header d-flex justify-content-between align-items-center">
-    <h1 class="h4 d-flex align-items-center">
-      <%= link_to group.name, group_path(group), class: "text-dark" %>
-      <span class="badge badge-secondary ml-3">
-        <%= group.members_count %> 
-      </span>
-      
-    </h1>
-    <div>
-      <button type="button" class="btn btn-outline-dark btn-sm">
-        <%= link_to 'Edit Group', edit_group_path(group), class: "text-dark" %>
-      </button>
-      <button type="button" class="btn btn-outline-dark btn-sm">
-        <%= link_to 'Add to Group', new_group_path, class: "text-dark" %>
-      </button>
+<div class="card">
+  <div class="card-header px-4 pt-4">
+    <div class="card-actions float-right">
+      <div class="badge bg-primary my-2"><%= group.members_count %></div>
     </div>
+    <h5 class="card-title mb-0"><%= link_to group.name, group_path(group), class: "text-dark" %></h5>
+    <div class="dropdown show">
+      <a href="#" data-toggle="dropdown" data-display="static">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal align-middle"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
+      </a>
+
+      <div class="dropdown-menu dropdown-menu-right">
+        <%= link_to "Add User to Group", edit_group_path(group), class: "dropdown-item text-dark" %>
+        <%= link_to "Edit Group", edit_group_path(group), class: "dropdown-item text-dark" %>
+      </div>
+    </div>
+    
+  </div>
+  <div class="card-body px-4 pt-2">
+    <p><strong>About:</strong> <%= group.description %></p>
+    
+    <div class="d-flex">
+      <% group.contacts.by_created_date.each do |contact| %>
+        <div title ="<%=contact.name%>"><%= image_tag contact.image, class: "rounded-circle mr-1", width: 28 %></div>
+      <% end %>
+    </div>
+
   </div>
   
-  <div class = "card-body">
-    <p class="card-text">Description:</p>
-    <p class="card-text text-muted mt-0 pt-0"><%= group.description %></p>
-    <% group.contacts.order(:preferred_method).each do |contact| %>
-      <%= render "contacts/contact_groups", contact: contact %>
-    <% end %>
-  </div>
 </div>
