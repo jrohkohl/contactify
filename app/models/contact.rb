@@ -27,7 +27,7 @@
 class Contact < ApplicationRecord
   belongs_to :owner, class_name: "User", counter_cache: true
   
-  has_many :members
+  has_many :members, dependent: :destroy
 
   has_many :groups, through: :members
 
