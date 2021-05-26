@@ -4,6 +4,10 @@ class GroupsController < ApplicationController
   # GET /groups or /groups.json
   def index
     @groups = Group.all
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /groups/1 or /groups/1.json
@@ -13,20 +17,30 @@ class GroupsController < ApplicationController
   # GET /groups/new
   def new
     @group = Group.new
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /groups/1/edit
   def edit
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # POST /groups or /groups.json
   def create
     @group = Group.new(group_params)
+    @group.owner = current_user
 
     respond_to do |format|
       if @group.save
-        format.html { redirect_to @group, notice: "Group was successfully created." }
+        format.html { redirect_back fallback_location: root_path, notice: "Group was successfully created." }
         format.json { render :show, status: :created, location: @group }
+        format.js
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @group.errors, status: :unprocessable_entity }
@@ -38,8 +52,9 @@ class GroupsController < ApplicationController
   def update
     respond_to do |format|
       if @group.update(group_params)
-        format.html { redirect_to @group, notice: "Group was successfully updated." }
+        format.html { redirect_back fallback_location: root_path, notice: "Group was successfully updated." }
         format.json { render :show, status: :ok, location: @group }
+        format.js
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @group.errors, status: :unprocessable_entity }
@@ -51,8 +66,9 @@ class GroupsController < ApplicationController
   def destroy
     @group.destroy
     respond_to do |format|
-      format.html { redirect_to groups_url, notice: "Group was successfully destroyed." }
+      format.html { redirect_back fallback_location: root_path, notice: "Group was successfully destroyed." }
       format.json { head :no_content }
+      format.js
     end
   end
 

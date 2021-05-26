@@ -1,2 +1,2 @@
-$("#<%= dom_id(@contact) %>_form").replaceWith("<%= j(render "contacts/contact", contact: @contact) %>");
+$("#<%= dom_id(@contact) %>_form").replaceWith("<%= j(render "contacts/contact", contact: @contact, index:nil) %>");
 

@@ -1,0 +1,11 @@
+var added_group = $("<%= j(render "groups/group_all", group: @group, index: nil) %>");
+
+added_group.hide();
+
+$("#group_card_0").parent().before(added_group);
+
+added_group.slideDown();
+
+$("#new_group_form").fadeOut(function() {
+  $(this).remove();
+});

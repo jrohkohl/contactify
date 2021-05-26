@@ -7,20 +7,25 @@
 
 <hr class="mb-5">
 
-<div class = "row">
-  
-  
-  <% current_user.groups.by_created_date.each do |group| %>
-    <div class = "col-4">
-      <%= render "groups/group_all", group: group %>
-    </div>
-  <% end %>
+
+<div id = "new-group" class = "col-4 mb-3">
+  <%= link_to 'Add New Group', new_group_path, class: 'btn btn-primary btn-sm mt-2 mb-2',  remote: true %>
 </div>
 
 
-<button type="button" class="btn btn-outline-primary btn-sm">
-  <%= link_to 'Add Group', new_group_path %>
-</button>
+<div class = "row">
+  
+
+    <% current_user.groups.by_created_date.each_with_index do |group, index| %>
+      
+      <%= render "groups/group_all", group: group, index: index %>
+      
+    <% end %>
+
+</div>
+
+
+
 
 <br>
 

@@ -1,8 +1,8 @@
-var added_contact = $("<%= j(render "contacts/contact", contact: @contact) %>");
+var added_contact = $("<%= j(render "contacts/contact", contact: @contact, index: nil) %>");
 
 added_contact.hide();
 
-$("#new_contact_form").after(added_contact);
+$("#contact_card_0").parent().before(added_contact);
 
 added_contact.slideDown();
 

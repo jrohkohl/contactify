@@ -3,7 +3,8 @@
 </head>
 <body>
 
-  <div id = "<%= dom_id(contact) %>_form">
+  <div class = "col-4" id="<%= dom_id(contact) %>_form">
+    
     <%= form_with(model: contact, local: false) do |form| %>
       <% if contact.errors.any? %>
         <div id="error_explanation">
@@ -83,5 +84,7 @@
         </div>
       </div>
     <% end %>
+    
   </div>
+
 </body>
