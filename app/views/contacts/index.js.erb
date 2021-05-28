@@ -1,4 +1,5 @@
 var my_contacts = $("<%= j(render "contacts/contact_table", contacts: @contacts) %>");
+
 my_contacts.hide()
 
 $("#contact-table-upper").children().fadeOut("slow", function() {
