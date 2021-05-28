@@ -43,7 +43,9 @@ class Contact < ApplicationRecord
 
   scope :by_method, -> { order(preferred_method: :desc) }
 
-  #add enum here for preferred_method
+  #enum preferred_method: { text: "text", text_work: "text (work)", phone_call: "phone call", phone_call_work: "phone call (work)",
+                          #email: "email", facebook: "facebook", instagram: "instagram"
+                          #}
 
 
 end

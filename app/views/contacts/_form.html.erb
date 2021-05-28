@@ -2,7 +2,7 @@
   <link rel="stylesheet" href="flashy_cards.css">
 </head>
 <body>
-
+ 
   <div class = "col-4" id="<%= dom_id(contact) %>_form">
     
     <%= form_with(model: contact, local: false) do |form| %>
@@ -53,7 +53,7 @@
 
             <div class="field mt-2">
               <%= form.label :preferred_method %>
-              <%= form.text_field :preferred_method, class: "form-control" %>
+              <%= form.select :preferred_method, ["text", "text (work)", "phone call", "phone call (work)" ,"email", "facebook", "instagram"], class: "form-control ml-1" %>
             </div>
 
             
