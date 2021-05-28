@@ -35,6 +35,7 @@ class MembersController < ApplicationController
       if @member.save
         format.html { redirect_back fallback_location: root_path, notice: "Member was successfully created." }
         format.json { render :show, status: :created, location: @member }
+        format.js
       else
         format.html { redirect_back fallback_location: root_path, status: :unprocessable_entity }
         format.json { render json: @member.errors, status: :unprocessable_entity }

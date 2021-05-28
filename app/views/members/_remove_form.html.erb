@@ -4,7 +4,7 @@
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
     <% @members.each do |option| %>
-      <%= link_to option.contact.name, option, method: :delete, class: "dropdown-item" %>
+      <%= link_to option.contact.name, option, method: :delete, class: "dropdown-item", remote: true %>
     <% end %>
   </div>
 </div>
