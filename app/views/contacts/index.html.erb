@@ -10,10 +10,10 @@
 
  
   <div class = "col-4">
-    <%= search_form_for @q, local: false do |f| %>
+    <%= search_form_for @q, remote: true do |f| %>
       <div class = "d-flex align-items-center">
         <%= f.search_field :name_cont, class: "form-control" %> 
-        <%= f.submit class: 'btn btn-primary btn-sm ml-2' %>
+        <%= f.submit id: "r-button", class: 'btn btn-primary btn-sm ml-2' %>
       </div>
     <% end %>
   </div>
@@ -23,20 +23,10 @@
     </div>
   </div>
   
-  
-
-
-
-
-  <div class = "row mt-3">
-
-    <% @contacts.by_created_date.each_with_index do |contact, index| %>
-
-      <%= render "contacts/contact", contact: contact, index: index %>
-
-    <% end %>
-
+  <div id="contact-table-upper">
+    <%= render "contacts/contact_table", contacts: @contacts %>
   </div>
+
 
 
 </body>

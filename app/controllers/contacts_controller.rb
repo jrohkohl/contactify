@@ -5,6 +5,10 @@ class ContactsController < ApplicationController
   def index
     @q = current_user.contacts.ransack(params[:q])
     @contacts = @q.result
+    respond_to do |format|
+      format.html
+      format.js
+    end
 
   end
 
