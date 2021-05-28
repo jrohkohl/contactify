@@ -2,7 +2,7 @@ var added_contact = $("<%= j(render "contacts/contact", contact: @contact, index
 
 added_contact.hide();
 
-$("#contact_card_0").parent().before(added_contact);
+$("#contact-table").prepend(added_contact);
 
 added_contact.slideDown();
 
