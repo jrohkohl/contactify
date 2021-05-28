@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   
   resources :users, only: :show
 
+
+  get "/members/remove/:group_id", to: "members#remove", as: "remove_member"
+
   
   
   

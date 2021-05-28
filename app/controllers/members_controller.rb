@@ -15,7 +15,7 @@ class MembersController < ApplicationController
     @member = Member.new
     @member.group_id =  params[:group_id]
     @contact_options = current_user.contacts.map{ |c| [ c.name, c.id ] }
-    @group_options = current_user.groups.map{ |g| [ g.name, g.id ] }
+    
     respond_to do |format|
       format.html
       format.js
@@ -54,9 +54,22 @@ class MembersController < ApplicationController
       end
     end
   end
+  
+  def remove
+
+    @group =  Group.find(params[:group_id])
+    @members = @group.members
+  
+    
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
 
   # DELETE /members/1 or /members/1.json
   def destroy
+    
     @member.destroy
     respond_to do |format|
       format.html { redirect_back fallback_location: root_path, notice: "Member was successfully destroyed." }

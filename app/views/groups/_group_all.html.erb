@@ -11,6 +11,7 @@
         </a>
         <div class="dropdown-menu dropdown-menu-right">
           <%= link_to "Add User to Group", new_member_path(:group_id => group.id), class: "dropdown-item text-dark", remote: true %>
+          <%= link_to "Remove User from Group", remove_member_path(:group_id => group.id), class: "dropdown-item text-dark", remote: true %>
           <%= link_to "Edit Group", edit_group_path(group), class: "dropdown-item text-dark", remote: true %>
           <%= link_to "Delete Group", group, method: :delete, class: "dropdown-item text-dark", remote: true %>
         </div>
@@ -18,7 +19,7 @@
     </div>
     <div class="card-body px-4 pt-2">
       <p><strong>About:</strong> <%= group.description %></p>
-      <div id = "contact_dd_arrow_<%=dom_id(group)%>"><i class="fas fa-caret-right"></i> Click for group details</div>
+      <div id = "contact_dd_arrow_<%=dom_id(group)%>"><i class="fas fa-caret-right" id ="icon_<%=dom_id(group)%>"></i> Click for group details</div>
       <%= render "groups/group_list", group: group %>
 
 
@@ -47,6 +48,7 @@
       function(){
           $("#contact_dd_arrow_<%= dom_id(group) %>").click(function () {
               $("#contact_dd_<%= dom_id(group) %>").fadeToggle();
+              $("#icon_<%= dom_id(group) %>").toggleClass("fas fa-caret-right fas fa-caret-down");
           });
       });
 

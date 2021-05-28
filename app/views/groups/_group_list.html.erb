@@ -2,13 +2,7 @@
 
   <% group.contacts.by_created_date.each do |contact| %>
 
-    <div class = "d-flex justify-content-between align-items-center">
-
-      <div class = "small"><%= contact.name %></div>
-
-      <div class="small"><%= contact.preferred_method %></div>
-
-    </div>
+    <%= render "groups/group_list_entry", group: group, contact: contact %>
 
   <% end %>
 
