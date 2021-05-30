@@ -1,6 +1,6 @@
 
 
-<div id ="contact_dd_<%=dom_id(group)%>_<%=dom_id(contact)%>" class = "d-flex justify-content-between align-items-center">
+<div id ="contact_dd_<%=dom_id(group)%>_<%=dom_id(contact)%>" class = "d-flex justify-content-between">
 
   <div class = "small"><%= link_to contact.name, contact_path(contact), class: "text-dark" %></div>
 
@@ -8,23 +8,26 @@
   <div class="small">  
     <% if contact.preferred_method == "text" || contact.preferred_method == "phone call" %>
       
-      Prefers <%= contact.preferred_method %> <i class="fas fa-home"></i>:  <%= Phonelib.parse(contact.personal_number).national %>
+      Prefers <%= contact.preferred_method %> - <i class="fas fa-home"></i>: 
+      <%= Phonelib.parse(contact.personal_number).national %>
 
     <% elsif contact.preferred_method == "text (work)" || contact.preferred_method == "phone call (work)" %>
 
-      Prefers <%= contact.preferred_method %> <i class="fas fa-briefcase"></i>:  <%= Phonelib.parse(contact.work_number).national %>
+      Prefers <%= contact.preferred_method %> - <i class="fas fa-briefcase"></i>:
+      <%= Phonelib.parse(contact.work_number).national %>
 
     <% elsif contact.preferred_method == "email" %>
 
-      Prefers <%= contact.preferred_method %> <i class="fas fa-envelope"></i>:  <%= contact.email %>
+      Prefers <%= contact.preferred_method %> <i class="fas fa-envelope"></i>:
+      <%= contact.email %>
 
     <% elsif contact.preferred_method == "facebook" %>
 
-      Prefers <i class="fab fa-facebook fa"></i>:  <%= link_to contact.facebook_url, "http://#{contact.facebook_url}" %>
+      Prefers <i class="fab fa-facebook fa-lg"></i>:  <%= link_to "Link", "http://#{contact.facebook_url}" %>
 
     <% elsif contact.preferred_method == "instagram" %>
 
-      Prefers <i class="fab fa-instagram fa"></i>:  <%= link_to contact.instagram_url, "http://#{contact.instagram_url}" %>
+      Prefers <i class="fab fa-instagram fa-lg"></i>:  <%= link_to "Link", "http://#{contact.instagram_url}" %>
 
     <% end %>
   </div>

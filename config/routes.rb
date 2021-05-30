@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :members
+  resources :members, only: [:new, :create, :destroy]
   resources :groups
   resources :contacts
   

@@ -1,1 +1,5 @@
+$("#new-member-form-<%=dom_id(@member.group)%>").remove();
+
+$("#remove-member-form-<%=dom_id(@member.group)%>").remove();
+
 $("#group_<%=@member.group_id%>_user_bubbles").after("<%= j(render "members/form", member: @member) %>");

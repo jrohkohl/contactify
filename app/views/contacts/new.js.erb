@@ -1,1 +1,3 @@
+$("#new_contact_form").remove();
+
 $("#new-contact").after("<%= j(render "contacts/form", contact: @contact) %>");

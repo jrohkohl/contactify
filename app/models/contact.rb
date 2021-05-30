@@ -35,7 +35,8 @@ class Contact < ApplicationRecord
 
   validates :personal_number, phone: true
 
-  validates :work_number, phone: true
+
+  validates :work_number, phone: { possible: true, allow_blank: true }
 
   validates :name, presence: true
 
