@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :groups
   resources :contacts
   
-  resources :users, only: :show
+  get ":username" => "users#show", as: :user
 
 
   get "/members/remove/:group_id", to: "members#remove", as: "remove_member"

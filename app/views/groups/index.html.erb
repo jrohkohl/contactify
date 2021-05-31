@@ -6,7 +6,20 @@
 
 <div class="d-flex justify-content-between align-items-center">
   <h1 class="display-4"><i class="fas fa-user-friends"></i> My Groups</h1>
-  <%= link_to 'Add New Group', new_group_path, class: 'btn btn-primary btn-sm mt-2 mb-2',  remote: true %>
+  
+  <div class="d-flex justify-content-between align-items-center">
+    <div>
+      <%= search_form_for @q, remote: true do |f| %>
+        <div class = "d-flex align-items-center">
+          <%= f.search_field :name_cont, class: "form-control" %> 
+          <%= f.submit id: "r-button", class: 'btn btn-secondary btn-sm ml-2' %>
+        </div>
+      <% end %>
+    </div>
+    <div>
+      <%= link_to 'Add New Group', new_group_path, class: 'btn btn-primary btn-sm ml-3',  remote: true %>
+    </div>
+  </div>
 </div>
 
 
@@ -15,16 +28,14 @@
 
 
 
-<div class = "row" id = "group-table">
+
   
 
-    <% current_user.groups.by_created_date.each_with_index do |group, index| %>
-      
-      <%= render "groups/group_all", group: group, index: index %>
-      
-    <% end %>
-
+<div id="group-table-upper">
+  <%= render "groups/group_table", groups: @groups %>
 </div>
+
+
 
 
 

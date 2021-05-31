@@ -5,7 +5,9 @@ class GroupsController < ApplicationController
 
   # GET /groups or /groups.json
   def index
-    @groups = Group.all
+    @q = current_user.groups.ransack(params[:q])
+    @groups = @q.result
+
     respond_to do |format|
       format.html
       format.js

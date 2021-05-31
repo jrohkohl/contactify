@@ -1,5 +1,6 @@
 class MembersController < ApplicationController
-  before_action :set_member, only: %i[ edit update destroy ]
+  before_action :set_member, only: %i[ destroy ]
+  before_action :ensure_current_user_is_owner, only: [:destroy]
 
   # GET /members/new
   def new
@@ -12,10 +13,6 @@ class MembersController < ApplicationController
       format.html
       format.js
     end
-  end
-
-  # GET /members/1/edit
-  def edit
   end
 
   # POST /members or /members.json
@@ -49,7 +46,6 @@ class MembersController < ApplicationController
 
   # DELETE /members/1 or /members/1.json
   def destroy
-    
     @member.destroy
     respond_to do |format|
       format.html { redirect_back fallback_location: root_path, notice: "Member was successfully destroyed." }
@@ -65,7 +61,7 @@ class MembersController < ApplicationController
     end
 
     def ensure_current_user_is_owner
-      if current_user != @member.owner
+      if current_user != @member.group.owner
         redirect_back fallback_location: root_url, alert: "You're not authorized for that."
       end
     end

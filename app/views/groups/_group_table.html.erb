@@ -1,0 +1,7 @@
+<div id = "group-table" class = "row mt-3">
+  <% @groups.by_created_date.each_with_index do |group| %>
+    
+    <%= render "groups/group_all", group: group%>
+    
+  <% end %>
+</div>
