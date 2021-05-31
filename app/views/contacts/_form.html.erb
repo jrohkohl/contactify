@@ -8,11 +8,13 @@
     <%= form_with(model: contact, local: false) do |form| %>
       <% if contact.errors.any? %>
         <div id="error_explanation">
-          <h2><%= pluralize(contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
-
-          <ul>
+          <ul class="list-unstyled">
             <% contact.errors.each do |error| %>
-              <li><%= error.full_message %></li>
+              <li>
+                <div class="alert alert-danger" role="alert">
+                  <%= error.full_message %>
+                </div>
+              </li>
             <% end %>
           </ul>
         </div>

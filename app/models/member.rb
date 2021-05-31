@@ -23,7 +23,6 @@ class Member < ApplicationRecord
 
   belongs_to :contact
   
-
   validates :group_id, uniqueness: { scope: :contact_id }
   
 end
