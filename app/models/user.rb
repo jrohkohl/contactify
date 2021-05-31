@@ -31,5 +31,5 @@ class User < ApplicationRecord
   has_many :contacts, foreign_key: :owner_id
 
   validates :username, uniqueness: true     #add presence: true after fixing devise create forms
-  validates :phone_number, phone: true
+  validates :phone_number, phone: { possible: true, allow_blank: true }
 end

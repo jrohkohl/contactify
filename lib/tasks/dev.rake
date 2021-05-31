@@ -19,12 +19,12 @@ task sample_data: :environment do
     )
   end
 
-  number = rand.to_s[2..11]
+  
   User.create(
     email: "alice@example.com",
     password: "password",
     username: "alice",
-    phone_number: "1#{number}",
+    phone_number: "16128500000",
   )
 
   users = User.all

@@ -33,8 +33,7 @@ class Contact < ApplicationRecord
 
   validates :preferred_method, presence: true
 
-  validates :personal_number, phone: true
-
+  validates :personal_number, phone: { possible: true, allow_blank: true }
 
   validates :work_number, phone: { possible: true, allow_blank: true }
 
@@ -43,10 +42,5 @@ class Contact < ApplicationRecord
   scope :by_created_date, -> { order(created_at: :desc )}
 
   scope :by_method, -> { order(preferred_method: :desc) }
-
-  #enum preferred_method: { text: "text", text_work: "text (work)", phone_call: "phone call", phone_call_work: "phone call (work)",
-                          #email: "email", facebook: "facebook", instagram: "instagram"
-                          #}
-
 
 end

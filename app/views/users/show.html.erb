@@ -1,37 +1,41 @@
-<head>
-  <link rel="stylesheet" href="flashy_cards.css">
-</head>
-
 <body>
-  <h1>Welcome</h1>
-  <p class="fs-5 col-md-8">Quickly and easily manage your contacts below.</p>
+  <h1>Welcome <%=@user.username.capitalize()%>!</h1>
+  <p class = "text-muted"> You have <%=pluralize(@user.contacts_count, "contact")%> and <%=pluralize(@user.groups_count, "group")%> in your contact list </p>
+  
+  <br>
+  
 
-  <div class="mb-5">
-    <button type="button" class="btn btn-lg card l-bg-green">Add Contacts</button>
-  </div>
+  <h5> Account Details (<%=link_to "edit", edit_user_registration_path%>)</h5>
+  <hr class="mb-3">
 
-  <hr class="col-md-2 mb-5">
+  <div class = "text-muted"> Username: </div> <h6 class = "text-dark"> <%=@user.username%> </h6> 
+  
+  <div class = "text-muted"> Email: </div> <h6 class = "text-dark"> <%=@user.email%> </h6> 
+ 
+  <div class = "text-muted"> Phone Number: </div> <h6 class = "text-dark"> <%= Phonelib.parse(@user.phone_number).national %> </h6> 
+
+
+  
+
+
+  <hr class="mb-5">
   <div class="row">
     <div class="col-md-8">
       
       <div class="row ml-2">
         <div>
-          <h4><i class="far fa-id-card"></i> Recently Added Contacts</h4>
-          <p> Below are your most recently created contacts:</p>
+          <h5><i class="far fa-id-card"></i> Recently Added Contacts</h5>
+          <p> Below are your newest contacts:</p>
         </div>
       </div>  
 
       <div class = "row mt-3">
         <% @user.contacts.by_created_date.first(12).each do |contact| %>
-          <div class = "col-6">
-            <%= render "contacts/contact", contact: contact %>
-          </div>
+         
+          <%= render "contacts/contact_profile_show", contact: contact %>
+
+
         <% end %>
-      </div>
-      <div class = "container">
-        <button type="button" class="btn btn-outline-primary btn-sm mb-1">
-          <%= link_to 'Add Contact', new_contact_path %>
-        </button>
       </div>
       <div class="container mt-2">
         <%= link_to "Go to All Contacts", contacts_path(@user.username) %>
@@ -41,8 +45,8 @@
     <div class="col-md-4">
       <div class="row ml-2">
         <div>
-          <h4><i class="fas fa-user-friends"></i> Groups</h4>
-          <p> Below are your most recently created groups:</p>
+          <h5><i class="fas fa-user-friends"></i> Groups</h5>
+          <p> Below are your newest groups:</p>
         </div>
       </div>
       
@@ -51,11 +55,6 @@
           <%= render "groups/group_show", group: group, number: number %>
         <% end %>
       </div>
-
-
-      <button type="button" class="btn btn-outline-primary btn-sm mb-1">
-        <%= link_to 'Add Group', new_group_path %>
-      </button>
           
         
       <div class="container mt-2">
