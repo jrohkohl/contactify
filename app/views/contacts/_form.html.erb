@@ -3,7 +3,7 @@
 </head>
 <body>
  
-  <div class = "col-4" id="<%= dom_id(contact) %>_form">
+  <div class="col-4" id="<%= dom_id(contact) %>_form">
     
     <%= form_with(model: contact, local: false) do |form| %>
       <% if contact.errors.any? %>
@@ -19,13 +19,13 @@
       <% end %>
 
       <div class="card l-bg-contacts">
-        <div class = "card-header">
+        <div class="card-header">
           <div class="field">
             <%= form.label :image %>
             <%= form.text_field :image, class: "form-control" %>
           </div>
           <div class="d-flex justify-content-between align-items-center">
-            <div class= "d-flex">
+            <div class="d-flex">
               <div class="d-flex flex-column">
                 <div class="field">
                   <%= form.label :name %>
@@ -37,12 +37,12 @@
                 </div>
               </div>
             </div>
-            <div class = "ml-1">
-              <div class = "field">
+            <div class="ml-1">
+              <div class="field">
                 <%= form.label :facebook_url %>
                 <%= form.text_field :facebook_url, class: "form-control" %>
               </div>
-              <div class = "field">
+              <div class="field">
                 <%= form.label :instagram_url %>
                 <%= form.text_field :instagram_url, class: "form-control" %>
               </div>

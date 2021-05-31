@@ -24,14 +24,10 @@
 
 
       <div id = "<%= dom_id(group) %>_user_bubbles" class="d-flex align-items-center mt-3">
-        <% if group.members_count < 6  %>
-          <% group.contacts.by_created_date.each do |contact| %>
-            <div title ="<%=contact.name%>"><%= image_tag contact.image, class: "rounded-circle mr-1", width: 28 %></div>
-          <% end %>
-        <% else %> 
-          <% group.contacts.by_created_date.first(5).each do |contact| %>
-            <div title ="<%=contact.name%>"><%= image_tag contact.image, class: "rounded-circle mr-1", width: 28 %></div>
-          <% end %>
+        <% group.contacts.by_created_date.first(5).each do |contact| %>
+          <div title ="<%=contact.name%>"><%= image_tag contact.image, class: "rounded-circle mr-1", width: 28 %></div>
+        <% end %>
+        <% if group.members_count > 5 %>
           <div class="badge bg-light"> + <%= (group.members_count - 5) %></div>
         <% end %>
       </div>
