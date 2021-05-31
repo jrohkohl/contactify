@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :members, only: [:new, :create, :destroy]
 
   resources :groups
+  
   resources :contacts
   
   get ":username" => "users#show", as: :user
