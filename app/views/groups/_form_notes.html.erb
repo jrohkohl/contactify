@@ -1,0 +1,40 @@
+<div class = "col-6" id="<%= dom_id(group) %>_notes">
+  <%= form_with(model: group, local: false) do |form| %>
+    <% if group.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(group.errors.count, "error") %> prohibited this group from being saved:</h2>
+
+        <ul>
+          <% group.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="card">
+      <div class="card-header px-4 pt-4">
+        <h5 class="card-title mb-0">Notes</h5>
+        <div class="field">
+          
+          <%= form.hidden_field :name, class: "form-control" %>
+        </div>
+      </div>
+      <div class="card-body px-4 pt-2">
+        <div class="field">
+          
+          <%= form.hidden_field :description, class: "form-control" %>
+        </div>
+
+        <div class="field">
+          
+          <%= form.text_area :notes, class: "form-control", :rows => 20, onchange: 'Rails.fire(this.form, "submit")' %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+
+
+
