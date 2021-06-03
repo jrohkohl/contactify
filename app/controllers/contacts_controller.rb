@@ -1,5 +1,6 @@
 class ContactsController < ApplicationController
   before_action :set_contact, only: %i[ show edit update destroy ]
+  before_action :ensure_current_user_is_owner, only: [:show, :destroy, :update, :edit]
 
   # GET /contacts or /contacts.json
   def index
@@ -79,8 +80,14 @@ class ContactsController < ApplicationController
       @contact = Contact.find(params[:id])
     end
 
+    def ensure_current_user_is_owner
+      if current_user != @contact.owner
+        redirect_back fallback_location: root_url, alert: "You're not authorized for that."
+      end
+    end
+
     # Only allow a list of trusted parameters through.
     def contact_params
-      params.require(:contact).permit(:name, :image, :organization, :preferred_method, :personal_number, :work_number, :email, :instagram_url, :facebook_url, :owner_id)
+      params.require(:contact).permit(:name, :image, :organization, :preferred_method, :personal_number, :work_number, :email, :instagram_url, :facebook_url, :owner_id, :picture)
     end
 end

@@ -1,4 +1,4 @@
-var added_contact = $("<%= j(render "contacts/contact", contact: @contact, index: nil) %>");
+var added_contact = $("<%=j(render "contacts/contact", contact: @contact)%>");
 
 added_contact.hide();
 

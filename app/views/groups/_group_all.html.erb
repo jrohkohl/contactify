@@ -1,8 +1,8 @@
-<div class = "col-4" id= "<%= dom_id(group) %>">
-  <div class="card" id = "group_card_<%=index%>">
+<div class = "col-6" id= "<%= dom_id(group) %>">
+  <div class="card">
     <div class="card-header px-4 pt-4">
       <div class="card-actions float-right">
-        <div class="badge bg-primary my-2"><%= pluralize(group.members_count, "member") %></div>
+        <div class="badge bg-primary text-light my-2"><%= pluralize(group.members_count, "member") %></div>
       </div>
       <h5 class="card-title mb-0"><%= link_to group.name, group_path(group), class: "text-dark" %></h5>
       <div class="dropdown show">
@@ -24,21 +24,21 @@
 
 
       <div id = "<%= dom_id(group) %>_user_bubbles" class="d-flex align-items-center mt-3">
-        <% if group.members_count < 6  %>
-          <% group.contacts.by_created_date.each do |contact| %>
-            <div title ="<%=contact.name%>"><%= image_tag contact.image, class: "rounded-circle mr-1", width: 28 %></div>
-          <% end %>
-        <% else %> 
-          <% group.contacts.by_created_date.first(5).each do |contact| %>
-            <div title ="<%=contact.name%>"><%= image_tag contact.image, class: "rounded-circle mr-1", width: 28 %></div>
-          <% end %>
+        <% group.contacts.by_created_date.limit(5).each do |contact| %>
+          <div title ="<%=contact.name%>">
+            <% if contact.picture.attached? %>
+              <%=image_tag contact.picture.variant(resize_to_fill: [28, 28]), class: "rounded-circle" %>
+            <% else %>
+              <%= image_tag "picture_placeholder.jpg", class: "rounded-circle", width: 28, height: 28 %>
+            <% end %>
+          </div>
+        <% end %>
+        <% if group.members_count > 5 %>
           <div class="badge bg-light"> + <%= (group.members_count - 5) %></div>
         <% end %>
       </div>
     </div>
   </div>
 </div>
-
-
 
 
