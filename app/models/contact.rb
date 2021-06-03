@@ -43,4 +43,6 @@ class Contact < ApplicationRecord
 
   scope :by_method, -> { order(preferred_method: :desc) }
 
+  has_one_attached :picture
+
 end

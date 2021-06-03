@@ -1,5 +1,5 @@
 <head>
-  <link rel="stylesheet" href="flashy_cards.css">
+  <%= stylesheet_link_tag 'flashy_cards.css', media: 'all', 'data-turbolinks-track': 'reload' %>
 </head>
 <body>
  
@@ -22,9 +22,19 @@
 
       <div class="card l-bg-contacts">
         <div class="card-header">
-          <div class="field">
-            <%= form.label :image %>
-            <%= form.text_field :image, class: "form-control" %>
+          <div class="form_group">
+            <div class = "row mb-2">
+              <div class = "col-2">
+                <% if contact.picture.attached? %>
+                  <%=image_tag contact.picture.variant(resize_to_fill: [45, 45]), class: "rounded-circle", :style => "border: 1px solid white; padding: 3px;" %>
+                <% else %>
+                  <%= image_tag "picture_placeholder.jpg", class: "rounded-circle", width: 45, height: 45, :style => "border: 1px solid white; padding: 3px;" %>
+                <% end %>
+              </div>
+              <div class = "col-10">
+                <%= form.file_field :picture, class: "form-control" %>
+              </div>
+            </div>
           </div>
           <div class="d-flex justify-content-between align-items-center">
             <div class="d-flex">
