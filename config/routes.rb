@@ -1,7 +1,23 @@
 Rails.application.routes.draw do
-  resources :members
-  resources :groups
-  resources :contacts
+  
+  root "contacts#index"
+  
+  
+
   devise_for :users
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  resources :members, only: [:new, :create, :destroy]
+
+  resources :groups
+  
+  resources :contacts
+  
+  get ":username" => "users#show", as: :user
+
+
+  get "/members/remove/:group_id", to: "members#remove", as: "remove_member"
+
+  
+  
+  
 end

@@ -3,37 +3,46 @@
 # Table name: contacts
 #
 #  id               :bigint           not null, primary key
-#  name             :string           not null
-#  image            :string
-#  organization     :string
-#  preferred_method :string
-#  personal_number  :string
-#  work_number      :string
 #  email            :string
-#  instagram_url    :string
 #  facebook_url     :string
-#  owner_id         :bigint           not null
+#  image            :string
+#  instagram_url    :string
+#  name             :string           not null
+#  organization     :string
+#  personal_number  :string
+#  preferred_method :string
+#  work_number      :string
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  owner_id         :bigint           not null
+#
+# Indexes
+#
+#  index_contacts_on_owner_id  (owner_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (owner_id => users.id)
 #
 class Contact < ApplicationRecord
   belongs_to :owner, class_name: "User", counter_cache: true
   
-  has_many :members
+  has_many :members, dependent: :destroy
 
   has_many :groups, through: :members
 
   validates :preferred_method, presence: true
 
-  validates :personal_number, phone: true
+  validates :personal_number, phone: { possible: true, allow_blank: true }
 
-  validates :work_number, phone: true
+  validates :work_number, phone: { possible: true, allow_blank: true }
+
+  validates :name, presence: true
 
   scope :by_created_date, -> { order(created_at: :desc )}
 
   scope :by_method, -> { order(preferred_method: :desc) }
 
-  #add enum here for preferred_method
-
+  has_one_attached :picture
 
 end

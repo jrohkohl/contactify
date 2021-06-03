@@ -1,29 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @group.name %>
-</p>
+<div class="row" id="group-table">
 
-<p>
-  <strong>Description:</strong>
-  <%= @group.description %>
-</p>
+  <%= render "groups/group_all", group: @group %>
 
-<p>
-  <strong>Notes:</strong>
-  <%= @group.notes %>
-</p>
+  <%= render "groups/form_notes", group: @group %>
+  
 
-<p>
-  <strong>Members count:</strong>
-  <%= @group.members_count %>
-</p>
+</div
 
-<p>
-  <strong>Owner:</strong>
-  <%= @group.owner_id %>
-</p>
 
-<%= link_to 'Edit', edit_group_path(@group) %> |
-<%= link_to 'Back', groups_path %>
+

@@ -3,18 +3,26 @@
 # Table name: contacts
 #
 #  id               :bigint           not null, primary key
-#  name             :string           not null
-#  image            :string
-#  organization     :string
-#  preferred_method :string
-#  personal_number  :string
-#  work_number      :string
 #  email            :string
-#  instagram_url    :string
 #  facebook_url     :string
-#  owner_id         :bigint           not null
+#  image            :string
+#  instagram_url    :string
+#  name             :string           not null
+#  organization     :string
+#  personal_number  :string
+#  preferred_method :string
+#  work_number      :string
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  owner_id         :bigint           not null
+#
+# Indexes
+#
+#  index_contacts_on_owner_id  (owner_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (owner_id => users.id)
 #
 require "test_helper"
 
