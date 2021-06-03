@@ -6,7 +6,7 @@
         <div class="d-flex justify-content-between align-items-center">
           <div class="d-flex">
             <% if contact.picture.present? %>
-              <%=image_tag contact.picture, class: "rounded-circle", width: 45, :style => "border: 1px solid white; padding: 3px;" %>
+              <%=image_tag contact.picture.variant(resize_to_fill: [45, 45]), class: "rounded-circle", :style => "border: 1px solid white; padding: 3px;" %>
             <% else %>
               <%= image_tag "picture_placeholder.jpg", class: "rounded-circle", width: 45, :style => "border: 1px solid white; padding: 3px;" %>
             <% end %>
