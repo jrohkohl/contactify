@@ -1,0 +1,23 @@
+<div class="card mb-2">
+  <div class="card-header d-flex justify-content-between align-items-center">
+    <h1 class="h4 d-flex align-items-center">
+      <%= link_to group.name, group_path(group), class: "text-dark" %>
+    </h1>
+    <div>
+      <button type="button" class="btn btn-outline-dark btn-sm">
+        <%= link_to 'Edit Group', edit_group_path(group), class: "text-dark" %>
+      </button>
+      <button type="button" class="btn btn-outline-dark btn-sm">
+        <%= link_to 'Add to Group', new_group_path, class: "text-dark" %>
+      </button>
+    </div>
+  </div>
+  
+  <div class = "card-body">
+    <p class="card-text">Description:</p>
+    <p class="card-text text-muted mt-0 pt-0"><%= group.description %></p>
+    <% group.contacts.each do |contact| %>
+      <%= render "contacts/contact_groups", contact: contact %>
+    <% end %>
+  </div>
+</div>
