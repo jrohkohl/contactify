@@ -1,0 +1,12 @@
+var my_contacts = $("<%=j(render "contacts/contact_table", contacts: @contacts)%>");
+
+my_contacts.hide()
+
+$("#contact-table-upper").children().fadeOut("slow", function() {
+  $(this).hide();
+});
+
+$("#contact-table-upper").children().replaceWith(my_contacts);
+
+$("#contact-table-upper").children().fadeIn("slow");
+

@@ -1,0 +1,11 @@
+var my_groups = $("<%=j(render "groups/group_table", groups: @groups)%>");
+
+my_groups.hide()
+
+$("#group-table-upper").children().fadeOut("slow", function() {
+  $(this).hide();
+});
+
+$("#group-table-upper").children().replaceWith(my_groups);
+
+$("#group-table-upper").children().fadeIn("slow");

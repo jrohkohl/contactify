@@ -1,8 +1,8 @@
-var added_group = $("<%= j(render "groups/group_all", group: @group, index: nil) %>");
+var added_group = $("<%= j(render "groups/group_all", group: @group) %>");
 
 added_group.hide();
 
-$("#group_card_0").parent().before(added_group);
+$("#group-table").prepend(added_group);
 
 added_group.slideDown();
 

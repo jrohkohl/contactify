@@ -27,15 +27,15 @@
 class Contact < ApplicationRecord
   belongs_to :owner, class_name: "User", counter_cache: true
   
-  has_many :members
+  has_many :members, dependent: :destroy
 
   has_many :groups, through: :members
 
   validates :preferred_method, presence: true
 
-  validates :personal_number, phone: true
+  validates :personal_number, phone: { possible: true, allow_blank: true }
 
-  validates :work_number, phone: true
+  validates :work_number, phone: { possible: true, allow_blank: true }
 
   validates :name, presence: true
 
@@ -43,7 +43,6 @@ class Contact < ApplicationRecord
 
   scope :by_method, -> { order(preferred_method: :desc) }
 
-  #add enum here for preferred_method
-
+  has_one_attached :picture
 
 end

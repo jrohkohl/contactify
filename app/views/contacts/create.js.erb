@@ -1,11 +1,12 @@
-var added_contact = $("<%= j(render "contacts/contact", contact: @contact, index: nil) %>");
+var added_contact = $("<%=j(render "contacts/contact", contact: @contact)%>");
 
 added_contact.hide();
 
-$("#contact_card_0").parent().before(added_contact);
+$("#contact-table").prepend(added_contact);
 
 added_contact.slideDown();
 
-$("#new_contact_form").fadeOut(function() {
+$("#new_contact_form").fadeOut("slow", function() {
   $(this).remove();
 });
+
