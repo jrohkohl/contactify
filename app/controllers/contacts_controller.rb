@@ -4,6 +4,7 @@ class ContactsController < ApplicationController
   # GET /contacts or /contacts.json
   def index
     @contacts = Contact.all
+
   end
 
   # GET /contacts/1 or /contacts/1.json
@@ -13,20 +14,29 @@ class ContactsController < ApplicationController
   # GET /contacts/new
   def new
     @contact = Contact.new
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /contacts/1/edit
   def edit
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # POST /contacts or /contacts.json
   def create
     @contact = Contact.new(contact_params)
-
+    @contact.owner_id = current_user.id
     respond_to do |format|
       if @contact.save
-        format.html { redirect_to @contact, notice: "Contact was successfully created." }
+        format.html { redirect_back fallback_location: root_path, notice: "Contact was successfully created." }
         format.json { render :show, status: :created, location: @contact }
+        format.js
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @contact.errors, status: :unprocessable_entity }
@@ -38,8 +48,9 @@ class ContactsController < ApplicationController
   def update
     respond_to do |format|
       if @contact.update(contact_params)
-        format.html { redirect_to @contact, notice: "Contact was successfully updated." }
+        format.html { redirect_back fallback_location: root_path, notice: "Contact was successfully updated." }
         format.json { render :show, status: :ok, location: @contact }
+        format.js
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @contact.errors, status: :unprocessable_entity }
@@ -51,8 +62,9 @@ class ContactsController < ApplicationController
   def destroy
     @contact.destroy
     respond_to do |format|
-      format.html { redirect_to contacts_url, notice: "Contact was successfully destroyed." }
+      format.html { redirect_back fallback_location: root_url, notice: "Contact was successfully destroyed." }
       format.json { head :no_content }
+      format.js
     end
   end
 

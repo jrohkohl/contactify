@@ -1,14 +1,67 @@
+<head>
+  <link rel="stylesheet" href="flashy_cards.css">
+</head>
+
+<body>
 <h1 class="display-4"><i class="fas fa-user-friends"></i> My Groups</h1>
 
 <hr class="mb-5">
 
-<% current_user.groups.by_created_date.each do |group| %>
-  <%= render "groups/group_all", group: group %>
-<% end %>
+<div class = "row">
+  
+  
+  <% current_user.groups.by_created_date.each do |group| %>
+    <div class = "col-4">
+      <%= render "groups/group_all", group: group %>
+    </div>
+  <% end %>
+</div>
 
 
 <button type="button" class="btn btn-outline-primary btn-sm">
-  <%= link_to 'Add Contact', new_group_path %>
+  <%= link_to 'Add Group', new_group_path %>
 </button>
 
 <br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>

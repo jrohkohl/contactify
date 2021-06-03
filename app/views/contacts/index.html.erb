@@ -1,16 +1,33 @@
-<h1 class="display-4"><i class="far fa-id-card"></i> My Contacts</h1>
+<head>
+  <link rel="stylesheet" href="flashy_cards.css">
+</head>
+<body>
+  <div>
+    <h4 class="display-4"><i class="far fa-id-card"></i> My Contacts</h4>
+  </div>
+  
+  <hr>
 
-<hr class="mb-5">
+  <div id = "new-contact">
+    
+    <%= link_to 'Add Contact', new_contact_path, remote: true %>
+    
+  </div>
 
-<% current_user.contacts.by_created_date.each do |contact| %>
-  <%= render "contacts/contact_all", contact: contact %>
-<% end %>
 
 
-<button type="button" class="btn btn-outline-primary btn-sm">
-  <%= link_to 'Add Contact', new_contact_path %>
-</button>
 
-<br>
+  <div class = "row mt-3">
+    <% current_user.contacts.by_created_date.each do |contact| %>
+      <div class = "col-4">
+        <%= render "contacts/contact", contact: contact %>
+      </div>
+    <% end %>
+  </div>
+
+
+</body>
+
+
 
 

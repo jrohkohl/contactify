@@ -13,6 +13,8 @@ class MembersController < ApplicationController
   # GET /members/new
   def new
     @member = Member.new
+    @contact_options = current_user.contacts.map{ |c| [ c.name, c.id ] }
+    @group_options = current_user.groups.map{ |g| [ g.name, g.id ] }
   end
 
   # GET /members/1/edit
