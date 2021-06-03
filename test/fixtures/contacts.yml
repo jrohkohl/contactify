@@ -1,0 +1,42 @@
+# == Schema Information
+#
+# Table name: contacts
+#
+#  id               :bigint           not null, primary key
+#  name             :string           not null
+#  image            :string
+#  organization     :string
+#  preferred_method :string
+#  personal_number  :string
+#  work_number      :string
+#  email            :string
+#  instagram_url    :string
+#  facebook_url     :string
+#  owner_id         :bigint           not null
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#
+
+one:
+  name: MyString
+  image: MyString
+  organization: MyString
+  preferred_method: MyString
+  personal_number: MyString
+  work_number: MyString
+  email: MyString
+  instagram_url: MyString
+  facebook_url: MyString
+  owner: one
+
+two:
+  name: MyString
+  image: MyString
+  organization: MyString
+  preferred_method: MyString
+  personal_number: MyString
+  work_number: MyString
+  email: MyString
+  instagram_url: MyString
+  facebook_url: MyString
+  owner: two
