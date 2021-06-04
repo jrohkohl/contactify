@@ -26,8 +26,8 @@
       <div id = "<%= dom_id(group) %>_user_bubbles" class="d-flex align-items-center mt-3">
         <% group.contacts.by_created_date.limit(5).each do |contact| %>
           <div title ="<%=contact.name%>">
-            <% if contact.picture.attached? %>
-              <%=image_tag contact.picture.variant(resize_to_fill: [28, 28]), class: "rounded-circle" %>
+            <% if contact.image.present? %>
+              <%= image_tag contact.image, class: "rounded-circle", width: 28, :style => "border: 1px solid white; padding: 3px;" %>
             <% else %>
               <%= image_tag "picture_placeholder.jpg", class: "rounded-circle", width: 28, height: 28 %>
             <% end %>
